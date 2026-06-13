@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🚀 Meocua iOS</title>
+<title>🍎 Meocua iOS</title>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
 }
 
 body{
@@ -18,54 +18,37 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(-45deg,#6d28d9,#2563eb,#06b6d4,#9333ea);
-    background-size:400% 400%;
-    animation:bg 10s ease infinite;
+    background:linear-gradient(135deg,#3b82f6,#7c3aed,#06b6d4);
     overflow:hidden;
 }
 
-@keyframes bg{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+/* Hiệu ứng lấp lánh */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+        radial-gradient(circle,rgba(255,255,255,.9) 1px,transparent 1px),
+        radial-gradient(circle,rgba(255,255,255,.6) 1px,transparent 1px);
+    background-size:80px 80px,120px 120px;
+    animation:starMove 15s linear infinite;
+    opacity:.4;
+}
+
+@keyframes starMove{
+    from{transform:translateY(0);}
+    to{transform:translateY(-80px);}
 }
 
 .card{
-    width:390px;
-    max-width:92%;
-    padding:25px;
-    border-radius:28px;
-    background:rgba(255,255,255,.12);
+    width:92%;
+    max-width:430px;
+    padding:28px;
+    border-radius:32px;
+    background:rgba(255,255,255,.16);
     backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.2);
-    box-shadow:0 20px 50px rgba(0,0,0,.35);
-    transform-style:preserve-3d;
-    transition:transform .1s linear;
-    position:relative;
-    overflow:hidden;
-}
-
-.card::before{
-    content:"";
-    position:absolute;
-    top:-50%;
-    left:-120%;
-    width:80%;
-    height:200%;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.4),
-        transparent
-    );
-    transform:rotate(25deg);
-    animation:shine 5s linear infinite;
-}
-
-@keyframes shine{
-    to{
-        left:180%;
-    }
+    border:1px solid rgba(255,255,255,.25);
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
 h1{
@@ -77,167 +60,106 @@ h1{
 
 .sub{
     text-align:center;
-    color:#eef2ff;
-    margin-bottom:15px;
-}
-
-.clock,
-.notice{
-    border-radius:16px;
-    padding:12px;
-    text-align:center;
-    color:#fff;
-    backdrop-filter:blur(10px);
-}
-
-.clock{
-    background:rgba(255,255,255,.08);
-    margin-bottom:12px;
-    font-weight:bold;
-    line-height:1.7;
-}
-
-.notice{
-    background:rgba(255,193,7,.15);
-    border:1px solid rgba(255,255,255,.15);
-    line-height:1.6;
-    font-size:14px;
-    margin-bottom:18px;
+    color:#eef;
+    margin-bottom:20px;
 }
 
 .btn{
     width:100%;
+    margin:12px 0;
+    padding:17px;
     border:none;
-    padding:16px;
-    margin:10px 0;
     border-radius:18px;
+    background:rgba(255,255,255,.18);
     color:#fff;
-    font-size:16px;
-    font-weight:bold;
+    font-size:17px;
+    font-weight:700;
     cursor:pointer;
     transition:.25s;
+    box-shadow:0 0 15px rgba(255,255,255,.15);
 }
 
 .btn:hover{
-    transform:scale(1.02);
+    transform:scale(1.03);
+    box-shadow:0 0 25px rgba(255,255,255,.4);
 }
 
-.key{
-    background:linear-gradient(90deg,#8b5cf6,#ec4899);
+.notice{
+    margin-top:20px;
+    padding:18px;
+    border-radius:18px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    color:#fff;
+    line-height:1.8;
+    font-size:15px;
 }
 
-.free{
-    background:linear-gradient(90deg,#2563eb,#06b6d4);
-}
-
-.download{
-    background:linear-gradient(90deg,#22c55e,#10b981);
+.notice h3{
+    text-align:center;
+    margin-bottom:10px;
 }
 
 .footer{
-    margin-top:15px;
     text-align:center;
     color:#fff;
+    opacity:.75;
+    margin-top:18px;
     font-size:13px;
-    opacity:.85;
 }
 </style>
-</head>
 
+</head>
 <body>
 
 <div class="card">
 
-    <h1>🚀 Meocua iOS</h1>
+    <h1>🍎 Meocua iOS</h1>
+    <div class="sub">Tải nhanh • Giao diện phong cách iPhone ✨</div>
 
-    <div class="sub">
-        Trung tâm tải xuống chính thức
-    </div>
-
-    <div id="clock" class="clock"></div>
-
-    <div class="notice">
-        📢 <b>LƯU Ý</b><br>
-        🔑 Key Free được <b>cập nhật mỗi ngày</b>.<br>
-        ⏰ Nếu key hết hạn, vui lòng quay lại để lấy key mới.<br>
-        ⚡ Hoặc sử dụng <b>LINK TẢI TRỰC TIẾP (KHÔNG CẦN KEY)</b>.
-    </div>
-
-    <button class="btn key"
+    <button class="btn"
         onclick="window.open('https://nhapma.com/v/Keylinktructiep','_blank')">
         🔑 Key Liên Tải Trực Tiếp
     </button>
 
-    <button class="btn free"
+    <button class="btn"
         onclick="window.open('https://nhapma.com/v/FoysqXl0qy','_blank')">
         📅 Key Free 1 Ngày
     </button>
 
-    <button class="btn download"
+    <button class="btn"
         onclick="window.open('https://nhapma.com/v/5Ql0Fx3myU','_blank')">
-        🚀 Link Tải Trực Tiếp (Không Cần Key)
+        🚀 Link Tải Trực Tiếp Không Cần Key
     </button>
 
+    <div class="notice">
+        <h3>📢 Lưu ý</h3>
+        ✅ Tải ứng dụng bằng <b>Link Tải Trực Tiếp</b>.<br>
+        ✅ Sau khi cài đặt, lấy <b>Key Free 1 Ngày</b>.<br>
+        ✅ Mở menu và nhập key để sử dụng.<br>
+        ✅ Key miễn phí có hiệu lực <b>1 ngày</b>, hết hạn chỉ cần lấy key mới là tiếp tục chơi.
+    </div>
+
     <div class="footer">
-        ✨ Glass UI • 3D Tilt • Đồng hồ thời gian thực
+        ✨ Chúc bạn trải nghiệm vui vẻ ✨
     </div>
 
 </div>
 
 <script>
-// Đồng hồ
-function updateClock(){
-    const now = new Date();
-    const days = [
-        "Chủ Nhật","Thứ Hai","Thứ Ba",
-        "Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"
-    ];
-
-    document.getElementById("clock").innerHTML =
-        `🗓️ ${days[now.getDay()]}<br>
-        ${String(now.getDate()).padStart(2,"0")}/
-        ${String(now.getMonth()+1).padStart(2,"0")}/
-        ${now.getFullYear()}<br>
-        🕒 ${String(now.getHours()).padStart(2,"0")}:
-        ${String(now.getMinutes()).padStart(2,"0")}:
-        ${String(now.getSeconds()).padStart(2,"0")}`;
-}
-
-updateClock();
-setInterval(updateClock,1000);
-
-// Hiệu ứng nghiêng 3D
-const card=document.querySelector(".card");
-
-function tilt(x,y){
-    const r=card.getBoundingClientRect();
-
-    const rx=(0.5-(y-r.top)/r.height)*16;
-    const ry=((x-r.left)/r.width-0.5)*16;
-
-    card.style.transform=
-    `perspective(1000px)
-     rotateX(${rx}deg)
-     rotateY(${ry}deg)
-     scale(1.02)`;
-}
-
-document.addEventListener("mousemove",e=>{
-    tilt(e.clientX,e.clientY);
+document.querySelectorAll(".btn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+        btn.animate(
+            [
+                {transform:"scale(1)"},
+                {transform:"scale(0.96)"},
+                {transform:"scale(1.02)"},
+                {transform:"scale(1)"}
+            ],
+            {duration:220}
+        );
+    });
 });
-
-document.addEventListener("touchmove",e=>{
-    const t=e.touches[0];
-    tilt(t.clientX,t.clientY);
-},{passive:true});
-
-function reset(){
-    card.style.transform=
-    "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-}
-
-document.addEventListener("mouseleave",reset);
-document.addEventListener("touchend",reset);
 </script>
 
 </body>
