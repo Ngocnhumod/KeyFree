@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚀 Meocua iOS</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(-45deg,#6d28d9,#2563eb,#06b6d4,#9333ea);
+    background-size:400% 400%;
+    animation:bg 10s ease infinite;
+    overflow:hidden;
+}
+
+@keyframes bg{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.card{
+    width:390px;
+    max-width:92%;
+    padding:25px;
+    border-radius:28px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.2);
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+    transform-style:preserve-3d;
+    transition:transform .1s linear;
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    top:-50%;
+    left:-120%;
+    width:80%;
+    height:200%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.4),
+        transparent
+    );
+    transform:rotate(25deg);
+    animation:shine 5s linear infinite;
+}
+
+@keyframes shine{
+    to{
+        left:180%;
+    }
+}
+
+h1{
+    color:#fff;
+    text-align:center;
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.sub{
+    text-align:center;
+    color:#eef2ff;
+    margin-bottom:15px;
+}
+
+.clock,
+.notice{
+    border-radius:16px;
+    padding:12px;
+    text-align:center;
+    color:#fff;
+    backdrop-filter:blur(10px);
+}
+
+.clock{
+    background:rgba(255,255,255,.08);
+    margin-bottom:12px;
+    font-weight:bold;
+    line-height:1.7;
+}
+
+.notice{
+    background:rgba(255,193,7,.15);
+    border:1px solid rgba(255,255,255,.15);
+    line-height:1.6;
+    font-size:14px;
+    margin-bottom:18px;
+}
+
+.btn{
+    width:100%;
+    border:none;
+    padding:16px;
+    margin:10px 0;
+    border-radius:18px;
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:scale(1.02);
+}
+
+.key{
+    background:linear-gradient(90deg,#8b5cf6,#ec4899);
+}
+
+.free{
+    background:linear-gradient(90deg,#2563eb,#06b6d4);
+}
+
+.download{
+    background:linear-gradient(90deg,#22c55e,#10b981);
+}
+
+.footer{
+    margin-top:15px;
+    text-align:center;
+    color:#fff;
+    font-size:13px;
+    opacity:.85;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>🚀 Meocua iOS</h1>
+
+    <div class="sub">
+        Trung tâm tải xuống chính thức
+    </div>
+
+    <div id="clock" class="clock"></div>
+
+    <div class="notice">
+        📢 <b>LƯU Ý</b><br>
+        🔑 Key Free được <b>cập nhật mỗi ngày</b>.<br>
+        ⏰ Nếu key hết hạn, vui lòng quay lại để lấy key mới.<br>
+        ⚡ Hoặc sử dụng <b>LINK TẢI TRỰC TIẾP (KHÔNG CẦN KEY)</b>.
+    </div>
+
+    <button class="btn key"
+        onclick="window.open('https://nhapma.com/v/Keylinktructiep','_blank')">
+        🔑 Key Liên Tải Trực Tiếp
+    </button>
+
+    <button class="btn free"
+        onclick="window.open('https://nhapma.com/v/FoysqXl0qy','_blank')">
+        📅 Key Free 1 Ngày
+    </button>
+
+    <button class="btn download"
+        onclick="window.open('https://nhapma.com/v/5Ql0Fx3myU','_blank')">
+        🚀 Link Tải Trực Tiếp (Không Cần Key)
+    </button>
+
+    <div class="footer">
+        ✨ Glass UI • 3D Tilt • Đồng hồ thời gian thực
+    </div>
+
+</div>
+
+<script>
+// Đồng hồ
+function updateClock(){
+    const now = new Date();
+    const days = [
+        "Chủ Nhật","Thứ Hai","Thứ Ba",
+        "Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"
+    ];
+
+    document.getElementById("clock").innerHTML =
+        `🗓️ ${days[now.getDay()]}<br>
+        ${String(now.getDate()).padStart(2,"0")}/
+        ${String(now.getMonth()+1).padStart(2,"0")}/
+        ${now.getFullYear()}<br>
+        🕒 ${String(now.getHours()).padStart(2,"0")}:
+        ${String(now.getMinutes()).padStart(2,"0")}:
+        ${String(now.getSeconds()).padStart(2,"0")}`;
+}
+
+updateClock();
+setInterval(updateClock,1000);
+
+// Hiệu ứng nghiêng 3D
+const card=document.querySelector(".card");
+
+function tilt(x,y){
+    const r=card.getBoundingClientRect();
+
+    const rx=(0.5-(y-r.top)/r.height)*16;
+    const ry=((x-r.left)/r.width-0.5)*16;
+
+    card.style.transform=
+    `perspective(1000px)
+     rotateX(${rx}deg)
+     rotateY(${ry}deg)
+     scale(1.02)`;
+}
+
+document.addEventListener("mousemove",e=>{
+    tilt(e.clientX,e.clientY);
+});
+
+document.addEventListener("touchmove",e=>{
+    const t=e.touches[0];
+    tilt(t.clientX,t.clientY);
+},{passive:true});
+
+function reset(){
+    card.style.transform=
+    "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+}
+
+document.addEventListener("mouseleave",reset);
+document.addEventListener("touchend",reset);
+</script>
+
+</body>
+</html>
